@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="mishas.kursach.MetricsThreeActivity">
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/HeadSeek"
+        android:max="100"
+        android:indeterminate="false"
+        android:layout_below="@+id/Head"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/Fight"
+        android:layout_alignEnd="@+id/Fight"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/head"
+        android:id="@+id/Head"
+        android:width="200dp"
+        android:height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HeadValue"
+        android:text="0"
+        android:layout_alignTop="@+id/Head"
+        android:layout_toRightOf="@+id/Head"
+        android:layout_toEndOf="@+id/Head"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BodySeek"
+        android:max="100"
+        android:indeterminate="false"
+        android:layout_x="-1dp"
+        android:layout_y="232dp"
+        android:layout_below="@+id/HeadSeek"
+        android:layout_marginTop="40dp"
+        android:layout_alignRight="@+id/Fight"
+        android:layout_alignEnd="@+id/Fight"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/body"
+        android:id="@+id/Body"
+        android:width="200dp"
+        android:height="30dp"
+        android:layout_alignTop="@+id/BodyValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BodyValue"
+        android:layout_below="@+id/HeadValue"
+        android:layout_alignLeft="@+id/HeadValue"
+        android:layout_alignStart="@+id/HeadValue"
+        android:layout_marginTop="42dp"
+        android:text="0"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/HandsSeek"
+        android:max="100"
+        android:indeterminate="false"
+        android:layout_x="-1dp"
+        android:layout_y="232dp"
+        android:layout_below="@+id/BodySeek"
+        android:layout_marginTop="40dp"
+        android:layout_toStartOf="@+id/Fight"
+        android:layout_alignRight="@+id/Fight"
+        android:layout_alignEnd="@+id/Fight"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hands"
+        android:id="@+id/Hands"
+        android:width="200dp"
+        android:height="30dp"
+        android:layout_alignTop="@+id/HandsValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HandsValue"
+        android:layout_below="@+id/BodyValue"
+        android:layout_alignLeft="@+id/BodyValue"
+        android:layout_alignStart="@+id/BodyValue"
+        android:layout_marginTop="42dp"
+        android:text="0"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LegsSeek"
+        android:max="100"
+        android:indeterminate="false"
+        android:layout_x="-1dp"
+        android:layout_y="232dp"
+        android:layout_below="@+id/HandsSeek"
+        android:layout_marginTop="40dp"
+        android:layout_toStartOf="@+id/Fight"
+        android:layout_alignRight="@+id/Fight"
+        android:layout_alignEnd="@+id/Fight"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="@string/legs"
+        android:id="@+id/Legs"
+        android:width="200dp"
+        android:height="30dp"
+        android:layout_alignTop="@+id/LegsValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LegsValue"
+        android:layout_below="@+id/HandsValue"
+        android:layout_alignLeft="@+id/HandsValue"
+        android:layout_alignStart="@+id/HandsValue"
+        android:layout_marginTop="42dp"
+        android:text="0"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let&apos;s Fight"
+        android:id="@+id/Fight"
+        android:layout_below="@+id/LegsSeek"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="131dp"
+        android:layout_marginEnd="131dp"/>
+</RelativeLayout>
