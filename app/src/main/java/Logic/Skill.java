@@ -9,7 +9,7 @@ public class Skill {
     public float probability;
     public String whoIs;
 
-    public Skill(String whoIs, String name, String place, float coef, float probability){
+    public Skill(String whoIs, String name, String place, float coef, float probability) {
         this.name = name;
         this.place = place;
         this.coef = coef;

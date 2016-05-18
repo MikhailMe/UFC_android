@@ -24,15 +24,15 @@ public class MetricsOneActivity extends AppCompatActivity implements OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_one);
         initFields();
-        next.setOnClickListener(this);
         initListeners();
+        next.setOnClickListener(this);
     }
 
     private void initFields() {
         next = (Button) findViewById(R.id.next);
         nameValue = (EditText) findViewById(R.id.nameValue);
         heightValue = (TextView) findViewById(R.id.heightValue);
-        heightSeek = (SeekBar) findViewById(R.id.speedSeek);
+        heightSeek = (SeekBar) findViewById(R.id.heightSeek);
         weightValue = (TextView) findViewById(R.id.weightValue);
         weightSeek = (SeekBar) findViewById(R.id.weightSeek);
     }
@@ -43,8 +43,8 @@ public class MetricsOneActivity extends AppCompatActivity implements OnClickList
             case R.id.next:
                 Intent intent = new Intent(this, MetricsTwoActivity.class);
                 intent.putExtra("name",nameValue.getText().toString());
-                intent.putExtra("height",heightValue.getText().toString());
-                intent.putExtra("weight",weightValue.getText().toString());
+                intent.putExtra("height",(float) heightSeek.getProgress());
+                intent.putExtra("weight",(float) weightSeek.getProgress());
                 startActivity(intent);
                 break;
             default:
@@ -53,7 +53,23 @@ public class MetricsOneActivity extends AppCompatActivity implements OnClickList
     }
 
     private void initListeners(){
-        heightSeek.setOnSeekBarChangeListener(Helper.init(heightValue));
-        weightSeek.setOnSeekBarChangeListener(Helper.init(weightValue));
+        heightSeek.setOnSeekBarChangeListener(init(heightValue));
+        weightSeek.setOnSeekBarChangeListener(init(weightValue));
+    }
+
+    public SeekBar.OnSeekBarChangeListener init(final TextView textView){
+        SeekBar.OnSeekBarChangeListener sbListenerH = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText(String.valueOf(seekBar.getProgress()));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+        return sbListenerH;
     }
 }

@@ -13,32 +13,32 @@ public class Health {
         arrayHP[3] = new_hands_HP;
     }
 
-    public boolean check(float tactics){
+    public boolean check(float tactics) {
         float val = tactics * 10;
-        for (int i = 0; i < arrayHP.length ; i++) {
-            if (arrayHP[i]-val < -30)
+        for (int i = 0; i < arrayHP.length; i++) {
+            if (arrayHP[i] - val < -30)
                 return false;
         }
         return true;
     }
 
-    public void recovery(float endurance){
-        for (int i = 0; i < AMOUNT; i++){
+    public void recovery(float endurance) {
+        for (int i = 0; i < AMOUNT; i++) {
             arrayHP[i] += 10 * endurance;
             if (arrayHP[i] > 100)
                 arrayHP[i] = 100;
         }
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         for (int i = 0; i < AMOUNT; ++i)
             if (arrayHP[i] <= 0)
                 return false;
         return true;
     }
 
-    public void damage(Skill obj){
-        switch (obj.place){
+    public void damage(Skill obj) {
+        switch (obj.place) {
             case "head":
                 arrayHP[0] -= obj.damage;
                 break;
@@ -51,7 +51,8 @@ public class Health {
             case "hands":
                 arrayHP[3] -= obj.damage;
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 }

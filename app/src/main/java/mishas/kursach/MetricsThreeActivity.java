@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.*;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import Logic.Judge;
 
 public class MetricsThreeActivity extends AppCompatActivity implements OnClickListener{
 
@@ -20,33 +23,38 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
     private TextView legsValue;
     private SeekBar legsSeek;
     private Button fight;
+    private EditText sumValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_three);
         initFields();
-        fight.setOnClickListener(this);
         initListeners();
+        fight.setOnClickListener(this);
+        int k = 0;
+        k = getIntent().getIntExtra("height",-1);
+        System.out.println(k);
     }
 
     private void initFields(){
-        headValue = (TextView) findViewById(R.id.HeadValue);
-        headSeek = (SeekBar) findViewById(R.id.HeadSeek);
-        bodyValue = (TextView) findViewById(R.id.BodyValue);
-        bodySeek = (SeekBar) findViewById(R.id.BodySeek);
-        handsValue = (TextView) findViewById(R.id.HandsValue);
-        handsSeek = (SeekBar) findViewById(R.id.HandsSeek);
-        legsValue = (TextView) findViewById(R.id.LegsValue);
-        legsSeek = (SeekBar) findViewById(R.id.LegsSeek);
+        headValue = (TextView) findViewById(R.id.headValue);
+        headSeek = (SeekBar) findViewById(R.id.headSeek);
+        bodyValue = (TextView) findViewById(R.id.bodyValue);
+        bodySeek = (SeekBar) findViewById(R.id.bodySeek);
+        handsValue = (TextView) findViewById(R.id.handsValue);
+        handsSeek = (SeekBar) findViewById(R.id.handsSeek);
+        legsValue = (TextView) findViewById(R.id.legsValue);
+        legsSeek = (SeekBar) findViewById(R.id.legsSeek);
         fight = (Button) findViewById(R.id.Fight);
+        sumValue = (EditText) findViewById(R.id.sumValue);
     }
 
     private void initListeners(){
-        headSeek.setOnSeekBarChangeListener(Helper.init(headValue));
-        bodySeek.setOnSeekBarChangeListener(Helper.init(bodyValue));
-        handsSeek.setOnSeekBarChangeListener(Helper.init(handsValue));
-        legsSeek.setOnSeekBarChangeListener(Helper.init(legsValue));
+        headSeek.setOnSeekBarChangeListener(init(headValue));
+        bodySeek.setOnSeekBarChangeListener(init(bodyValue));
+        handsSeek.setOnSeekBarChangeListener(init(handsValue));
+        legsSeek.setOnSeekBarChangeListener(init(legsValue));
     }
 
     @Override
@@ -55,20 +63,50 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
             case R.id.Fight:
                 Intent intent = new Intent(this, GameActivity.class);
                 intent.putExtra("name",getIntent().getStringExtra("name"));
-                intent.putExtra("height",getIntent().getStringExtra("height"));
-                intent.putExtra("speed",getIntent().getStringExtra("speed"));
-                intent.putExtra("endurance",getIntent().getStringExtra("endurance"));
-                intent.putExtra("accuracy",getIntent().getStringExtra("accuracy"));
-                intent.putExtra("tactics",getIntent().getStringExtra("tactics"));
-                intent.putExtra("aggression",getIntent().getStringExtra("aggression"));
-                intent.putExtra("head",headValue.getText().toString());
-                intent.putExtra("body",bodyValue.getText().toString());
-                intent.putExtra("hands",handsValue.getText().toString());
-                intent.putExtra("legs",legsValue.getText().toString());
+                intent.putExtra("height",getIntent().getFloatExtra("height",0f));
+                intent.putExtra("weight",getIntent().getFloatExtra("weight",0f));
+                intent.putExtra("speed",getIntent().getFloatExtra("speed",0f));
+                intent.putExtra("endurance",getIntent().getFloatExtra("endurance",0f));
+                intent.putExtra("accuracy",getIntent().getFloatExtra("accuracy",0f));
+                intent.putExtra("tactics",getIntent().getFloatExtra("tactics",0f));
+                intent.putExtra("aggression",getIntent().getFloatExtra("aggression",0f));
+                intent.putExtra("head",(float) headSeek.getProgress());
+                intent.putExtra("body",(float) bodySeek.getProgress());
+                intent.putExtra("hands",(float) handsSeek.getProgress());
+                intent.putExtra("legs",(float) legsSeek.getProgress());
                 startActivity(intent);
                 break;
             default:
                 break;
         }
+    }
+
+    private SeekBar.OnSeekBarChangeListener init(final TextView textView){
+        SeekBar.OnSeekBarChangeListener seekListener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText(String.valueOf(seekBar.getProgress()));
+                int sum = 0;
+                sum += headSeek.getProgress();
+                sum += bodySeek.getProgress();
+                sum += handsSeek.getProgress();
+                sum += legsSeek.getProgress();
+                if (Judge.controlThree(sum) < 0)
+                    fight.setEnabled(false);
+                else fight.setEnabled(true);
+                sumValue.setText(Judge.controlThree(sum).toString());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        };
+        return seekListener;
     }
 }

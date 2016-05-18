@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.*;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.SeekBar.*;
 import android.widget.TextView;
+
+import Logic.Judge;
 
 public class MetricsTwoActivity extends AppCompatActivity implements OnClickListener{
 
@@ -22,14 +26,15 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
     private TextView aggressionValue;
     private SeekBar aggressionSeek;
     private Button next;
+    private EditText sumValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_two);
         initFields();
-        next.setOnClickListener(this);
         initListeners();
+        next.setOnClickListener(this);
     }
 
     private void initFields(){
@@ -44,14 +49,15 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
         aggressionValue = (TextView) findViewById(R.id.aggressionValue);
         aggressionSeek = (SeekBar) findViewById(R.id.aggressionSeek);
         next = (Button) findViewById(R.id.next2);
+        sumValue = (EditText) findViewById(R.id.sumValue);
     }
 
     private void initListeners(){
-        speedSeek.setOnSeekBarChangeListener(Helper.init(speedValue));
-        enduranceSeek.setOnSeekBarChangeListener(Helper.init(enduranceValue));
-        accuracySeek.setOnSeekBarChangeListener(Helper.init(accuracyValue));
-        tacticsSeek.setOnSeekBarChangeListener(Helper.init(tacticsValue));
-        aggressionSeek.setOnSeekBarChangeListener(Helper.init(aggressionValue));
+        speedSeek.setOnSeekBarChangeListener(init(speedValue));
+        enduranceSeek.setOnSeekBarChangeListener(init(enduranceValue));
+        accuracySeek.setOnSeekBarChangeListener(init(accuracyValue));
+        tacticsSeek.setOnSeekBarChangeListener(init(tacticsValue));
+        aggressionSeek.setOnSeekBarChangeListener(init(aggressionValue));
     }
 
     @Override
@@ -60,17 +66,47 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
             case R.id.next2:
                 Intent intent = new Intent(this, MetricsThreeActivity.class);
                 intent.putExtra("name",getIntent().getStringExtra("name"));
-                intent.putExtra("height",getIntent().getStringExtra("height"));
-                intent.putExtra("weight",getIntent().getStringExtra("weight"));
-                intent.putExtra("speed",speedValue.getText().toString());
-                intent.putExtra("endurance",enduranceValue.getText().toString());
-                intent.putExtra("accuracy",accuracyValue.getText().toString());
-                intent.putExtra("tactics",tacticsValue.getText().toString());
-                intent.putExtra("aggression",aggressionValue.getText().toString());
+                intent.putExtra("height",getIntent().getFloatExtra("height",0f));
+                intent.putExtra("weight",getIntent().getFloatExtra("weight",0f));
+                intent.putExtra("speed",(float) speedSeek.getProgress());
+                intent.putExtra("endurance",(float) enduranceSeek.getProgress());
+                intent.putExtra("accuracy",(float) accuracySeek.getProgress());
+                intent.putExtra("tactics",(float) tacticsSeek.getProgress());
+                intent.putExtra("aggression",(float) aggressionSeek.getProgress());
                 startActivity(intent);
                 break;
             default:
                 break;
         }
+    }
+
+    private OnSeekBarChangeListener init(final TextView textView){
+        OnSeekBarChangeListener seekListener = new OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText(String.valueOf(seekBar.getProgress()));
+                int sum = 0;
+                sum += speedSeek.getProgress();
+                sum += enduranceSeek.getProgress();
+                sum += accuracySeek.getProgress();
+                sum += tacticsSeek.getProgress();
+                sum += aggressionSeek.getProgress();
+                if (Judge.controlTwo(sum) < 0)
+                    next.setEnabled(false);
+                else next.setEnabled(true);
+                sumValue.setText(Judge.controlTwo(sum).toString());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        };
+        return seekListener;
     }
 }

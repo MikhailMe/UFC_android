@@ -1,189 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="mishas.kursach.MetricsTwoActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/speedSeek"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_below="@+id/speed"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/next2"
-        android:layout_toStartOf="@+id/next2"/>
-
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/speed"
-        android:id="@+id/speed"
-        android:width="200dp"
-        android:height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/speedValue"
-        android:layout_alignTop="@+id/speed"
-        android:layout_toRightOf="@+id/speed"
-        android:layout_toEndOf="@+id/speed"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp"
-        android:text="@string/o"/>
+        android:layout_marginTop="10dp">
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/enduranceSeek"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_below="@+id/endurance"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/speedSeek"
-        android:layout_alignEnd="@+id/speedSeek"/>
+        <SeekBar
+            android:id="@+id/speedSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/speedValue"
+            android:layout_toRightOf="@+id/speedValue"/>
 
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/endurance"
-        android:id="@+id/endurance"
-        android:width="200dp"
-        android:height="30dp"
-        android:layout_below="@+id/speedSeek"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
 
-    <TextView
+            <TextView
+                android:id="@+id/speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed"
+                android:textSize="@dimen/my_text_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/speedValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textSize="@dimen/my_text_size"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/linearLayout1"
+            android:layout_alignStart="@+id/linearLayout1"
+            android:layout_marginLeft="71dp"
+            android:layout_marginStart="71dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/enduranceValue"
+        android:layout_marginTop="50dp">
 
-        android:text="@string/o"
-        android:layout_below="@+id/speedSeek"
-        android:layout_alignLeft="@+id/speedValue"
-        android:layout_alignStart="@+id/speedValue"/>
+        <SeekBar
+            android:id="@+id/enduranceSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/enduranceValue"
+            android:layout_toRightOf="@+id/enduranceValue"/>
 
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/accuracySeek"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_below="@+id/accuracy"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/next2"
-        android:layout_toStartOf="@+id/next2"/>
+            <TextView
+                android:id="@+id/endurance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/endurance"
+                android:textSize="@dimen/my_text_size"/>
 
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/accuracy"
-        android:id="@+id/accuracy"
-        android:width="200dp"
-        android:height="30dp"
-        android:layout_alignTop="@+id/accuracyValue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        </LinearLayout>
 
-    <TextView
+        <TextView
+            android:id="@+id/enduranceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textSize="@dimen/my_text_size"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/linearLayout2"
+            android:layout_toEndOf="@+id/linearLayout2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/accuracyValue"
-        android:layout_below="@+id/enduranceValue"
-        android:layout_alignLeft="@+id/enduranceValue"
-        android:layout_alignStart="@+id/enduranceValue"
-        android:layout_marginTop="42dp"
-        android:text="@string/o"/>
+        android:layout_marginTop="90dp">
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tacticsSeek"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_below="@+id/accuracySeek"
-        android:layout_marginTop="40dp"
-        android:layout_toLeftOf="@+id/next2"
-        android:layout_toStartOf="@+id/next2"/>
+        <SeekBar
+            android:id="@+id/accuracySeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/accuracyValue"
+            android:layout_toRightOf="@+id/accuracyValue"/>
 
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/tactics"
-        android:id="@+id/tactics"
-        android:width="200dp"
-        android:height="30dp"
-        android:layout_alignTop="@+id/tacticsValue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
 
-    <TextView
+            <TextView
+                android:id="@+id/accuracy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accuracy"
+                android:textSize="@dimen/my_text_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/accuracyValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textSize="@dimen/my_text_size"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/linearLayout3"
+            android:layout_toEndOf="@+id/linearLayout3"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tacticsValue"
-        android:layout_below="@+id/accuracyValue"
-        android:layout_alignLeft="@+id/accuracyValue"
-        android:layout_alignStart="@+id/accuracyValue"
-        android:layout_marginTop="42dp"
-        android:text="@string/o"/>
+        android:layout_marginTop="130dp">
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/aggressionSeek"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_below="@+id/tacticsSeek"
-        android:layout_marginTop="40dp"
-        android:layout_toLeftOf="@+id/next2"
-        android:layout_toStartOf="@+id/next2"/>
+        <SeekBar
+            android:id="@+id/tacticsSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/tacticsValue"
+            android:layout_toRightOf="@+id/tacticsValue"/>
 
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:text="@string/aggression"
-        android:id="@+id/aggression"
-        android:width="200dp"
-        android:height="30dp"
-        android:layout_alignTop="@+id/aggressionValue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
 
-    <TextView
+            <TextView
+                android:id="@+id/tactics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tactics"
+                android:textSize="@dimen/my_text_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tacticsValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textSize="@dimen/my_text_size"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/linearLayout4"
+            android:layout_toEndOf="@+id/linearLayout4"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/aggressionValue"
-        android:layout_below="@+id/tacticsValue"
-        android:layout_alignLeft="@+id/tacticsValue"
-        android:layout_alignStart="@+id/tacticsValue"
-        android:layout_marginTop="42dp"
-        android:text="@string/o"/>
+        android:layout_marginTop="170dp"
+        android:id="@+id/relativeLayout5">
+
+        <SeekBar
+            android:id="@+id/aggressionSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/aggressionValue"
+            android:layout_toRightOf="@+id/aggressionValue"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/aggression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aggression"
+                android:textSize="@dimen/my_text_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/aggressionValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textSize="@dimen/my_text_size"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/linearLayout5"
+            android:layout_toEndOf="@+id/linearLayout5"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
+
+    </RelativeLayout>
 
     <Button
+        android:id="@+id/next2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/next2"
-        android:layout_marginRight="51dp"
-        android:layout_marginEnd="51dp"
-        android:layout_below="@+id/tacticsValue"
+        android:text="@string/next"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"/>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message"
+        android:textSize="@dimen/my_text_size"
+        android:layout_alignTop="@+id/next2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:text="@string/amountTwoActivity"
+        android:id="@+id/sumValue"
+        android:layout_alignTop="@+id/next2"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="250dp"/>
 
 </RelativeLayout>

@@ -14,27 +14,25 @@
         android:id="@+id/newGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="41dp"
         android:text="@string/game"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/about"
-        android:layout_alignEnd="@+id/about"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/about"
         android:layout_below="@+id/newGame"
-        android:layout_centerHorizontal="true"
-        android:text="@string/about"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/about"
-        android:layout_alignStart="@+id/about"
+        android:text="@string/exit"
         android:layout_below="@+id/about"
-        android:text="@string/exit"/>
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

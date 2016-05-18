@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="90dp"
         android:text="@string/game"/>
 
     <Button
@@ -31,6 +31,7 @@
         android:id="@+id/exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/about"
         android:layout_alignStart="@+id/about"
         android:layout_below="@+id/about"

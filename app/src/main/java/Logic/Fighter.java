@@ -16,20 +16,19 @@ public class Fighter {
     public float aggression;                // агрессия
     public Random rand;                     // рандом
     public boolean rack;                    // стойка, true -> правая нога, false -> левая нога
-    private Map<String, Float> coefs;       // String - имя приёма, Float - коэффициент
     private Map<String, Float> defenceCoefs;// вероятность блокировки каждой части тела
     public ArrayList<Skill> skills;
     public float receivedDamage;            // полученный урон
 
     public Fighter(String name,Health newHP,float newHeight, float newWeight, float newSpeed, float newEndurance,
-                   float newStamina ,float newAccuracy, float newTactics, float newAggression, Map<String, Float> defCoef){
+                   float newAccuracy, float newTactics, float newAggression, Map<String, Float> defCoef){
         this.name = name;
         this.HP = newHP;
-        this.height = newHeight;
+        this.height = newHeight / 100 * 46;
         this.weight = newWeight / 25;
         this.speed = newSpeed / 10;
         this.endurance = newEndurance / 100;
-        this.stamina = newStamina;
+        this.stamina = 1f;
         this.accuracy = newAccuracy / 100;
         this.tactics = newTactics / 100;
         this.aggression = newAggression / 100;
@@ -53,9 +52,7 @@ public class Fighter {
     public Skill act(){
         if (((aggression > tactics) && (rand.nextFloat() < aggression)) || makeDecision())
             return attack();
-        else{
-            return defend();
-        }
+        else return defend();
     }
 
     private boolean makeDecision(){
