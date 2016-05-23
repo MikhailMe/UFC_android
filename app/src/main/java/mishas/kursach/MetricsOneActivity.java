@@ -24,8 +24,25 @@ public class MetricsOneActivity extends AppCompatActivity implements OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_one);
         initFields();
+        clear();
         initListeners();
         next.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("nameValue",nameValue.getText().toString());
+        savedInstanceState.putInt("heightValue",heightSeek.getProgress());
+        savedInstanceState.putInt("weightValue",weightSeek.getProgress());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        nameValue.setText(savedInstanceState.getString("nameValue"));
+        heightSeek.setProgress(savedInstanceState.getInt("heightValue"));
+        weightSeek.setProgress(savedInstanceState.getInt("weightValue"));
     }
 
     private void initFields() {
@@ -71,5 +88,11 @@ public class MetricsOneActivity extends AppCompatActivity implements OnClickList
             }
         };
         return sbListenerH;
+    }
+
+    private void clear(){
+        nameValue.setText("");
+        heightSeek.setProgress(0);
+        weightSeek.setProgress(0);
     }
 }

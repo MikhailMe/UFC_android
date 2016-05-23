@@ -205,17 +205,26 @@
         android:layout_alignRight="@+id/legsValue"
         android:layout_alignEnd="@+id/legsValue"/>
 
+    <Button
+        android:id="@+id/random"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/random"
+        android:layout_below="@+id/relativeLayout4"
+        android:layout_toLeftOf="@+id/Fight"
+        android:layout_toStartOf="@+id/Fight"/>
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:editable="false"
         android:text="@string/amountThreeActivity"
         android:id="@+id/sumValue"
-        android:layout_marginRight="76dp"
-        android:layout_marginEnd="76dp"
-        android:layout_alignBottom="@+id/message"
-        android:layout_toLeftOf="@+id/Fight"
-        android:layout_toStartOf="@+id/Fight"/>
+        android:layout_alignBottom="@+id/Fight"
+        android:layout_toRightOf="@+id/message"
+        android:layout_toEndOf="@+id/message"
+        android:layout_marginLeft="31dp"
+        android:layout_marginStart="31dp"/>
 
     <TextView
         android:id="@+id/message"
@@ -224,10 +233,8 @@
         android:text="@string/message"
         android:textSize="@dimen/my_text_size"
 
-        android:layout_marginRight="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_alignBottom="@+id/Fight"
-        android:layout_toLeftOf="@+id/sumValue"
-        android:layout_toStartOf="@+id/sumValue"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

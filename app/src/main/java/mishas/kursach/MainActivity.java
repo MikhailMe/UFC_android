@@ -23,6 +23,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         exit.setOnClickListener(this);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     private void initFields(){
         newGame = (Button) findViewById(R.id.newGame);
         about = (Button) findViewById(R.id.about);

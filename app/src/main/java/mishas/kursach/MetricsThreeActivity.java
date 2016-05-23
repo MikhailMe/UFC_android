@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.*;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.Random;
 
 import Logic.Judge;
 
@@ -24,17 +26,35 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
     private SeekBar legsSeek;
     private Button fight;
     private EditText sumValue;
+    private Button random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_three);
         initFields();
+        clear();
         initListeners();
         fight.setOnClickListener(this);
-        int k = 0;
-        k = getIntent().getIntExtra("height",-1);
-        System.out.println(k);
+        random.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("headValue",headSeek.getProgress());
+        savedInstanceState.putInt("bodyValue",bodySeek.getProgress());
+        savedInstanceState.putInt("handsValue",handsSeek.getProgress());
+        savedInstanceState.putInt("legsValue",legsSeek.getProgress());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        headSeek.setProgress(savedInstanceState.getInt("headValue"));
+        bodySeek.setProgress(savedInstanceState.getInt("bodyValue"));
+        handsSeek.setProgress(savedInstanceState.getInt("handsValue"));
+        legsSeek.setProgress(savedInstanceState.getInt("legsValue"));
     }
 
     private void initFields(){
@@ -48,6 +68,7 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
         legsSeek = (SeekBar) findViewById(R.id.legsSeek);
         fight = (Button) findViewById(R.id.Fight);
         sumValue = (EditText) findViewById(R.id.sumValue);
+        random = (Button) findViewById(R.id.random);
     }
 
     private void initListeners(){
@@ -76,6 +97,17 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
                 intent.putExtra("legs",(float) legsSeek.getProgress());
                 startActivity(intent);
                 break;
+            case R.id.random:
+                Random rand = new Random();
+                int coef = rand.nextInt(100);
+                headSeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                bodySeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                handsSeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                legsSeek.setProgress(coef);
+                break;
             default:
                 break;
         }
@@ -96,17 +128,22 @@ public class MetricsThreeActivity extends AppCompatActivity implements OnClickLi
                 else fight.setEnabled(true);
                 sumValue.setText(Judge.controlThree(sum).toString());
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         };
         return seekListener;
+    }
+
+    private void clear(){
+        headSeek.setProgress(0);
+        bodySeek.setProgress(0);
+        handsSeek.setProgress(0);
+        legsSeek.setProgress(0);
     }
 }

@@ -22,4 +22,6 @@
     <string name="message">The remaining points</string>
     <string name="amountTwoActivity">350</string>
     <string name="amountThreeActivity">280</string>
+    <string name="random">random</string>
+    <string name="new_fight">new fight</string>
 </resources>

@@ -11,6 +11,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.*;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import Logic.Judge;
 
 public class MetricsTwoActivity extends AppCompatActivity implements OnClickListener{
@@ -27,14 +29,37 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
     private SeekBar aggressionSeek;
     private Button next;
     private EditText sumValue;
+    private Button random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metrics_two);
         initFields();
+        clear();
         initListeners();
         next.setOnClickListener(this);
+        random.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("speedValue",speedSeek.getProgress());
+        savedInstanceState.putInt("enduranceValue",enduranceSeek.getProgress());
+        savedInstanceState.putInt("accuracyValue",accuracySeek.getProgress());
+        savedInstanceState.putInt("tacticsValue",tacticsSeek.getProgress());
+        savedInstanceState.putInt("aggressionValue",aggressionSeek.getProgress());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        speedSeek.setProgress(savedInstanceState.getInt("speedValue"));
+        enduranceSeek.setProgress(savedInstanceState.getInt("enduranceValue"));
+        accuracySeek.setProgress(savedInstanceState.getInt("accuracyValue"));
+        tacticsSeek.setProgress(savedInstanceState.getInt("tacticsValue"));
+        aggressionSeek.setProgress(savedInstanceState.getInt("aggressionValue"));
     }
 
     private void initFields(){
@@ -50,6 +75,7 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
         aggressionSeek = (SeekBar) findViewById(R.id.aggressionSeek);
         next = (Button) findViewById(R.id.next2);
         sumValue = (EditText) findViewById(R.id.sumValue);
+        random = (Button) findViewById(R.id.random);
     }
 
     private void initListeners(){
@@ -75,6 +101,19 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
                 intent.putExtra("aggression",(float) aggressionSeek.getProgress());
                 startActivity(intent);
                 break;
+            case R.id.random:
+                Random rand = new Random();
+                int coef = rand.nextInt(100);
+                speedSeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                enduranceSeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                accuracySeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                tacticsSeek.setProgress(coef);
+                coef = rand.nextInt(100);
+                aggressionSeek.setProgress(coef);
+                break;
             default:
                 break;
         }
@@ -96,17 +135,21 @@ public class MetricsTwoActivity extends AppCompatActivity implements OnClickList
                 else next.setEnabled(true);
                 sumValue.setText(Judge.controlTwo(sum).toString());
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         };
         return seekListener;
+    }
+
+    private void clear(){
+        speedSeek.setProgress(0);
+        enduranceSeek.setProgress(0);
+        accuracySeek.setProgress(0);
+        tacticsSeek.setProgress(0);
+        aggressionSeek.setProgress(0);
     }
 }

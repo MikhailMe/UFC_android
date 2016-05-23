@@ -18,7 +18,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/linearLayout1"
             android:indeterminate="false"
-            android:max="100"/>
+            android:max="220"/>
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -65,7 +65,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/linearLayout2"
             android:indeterminate="false"
-            android:max="100"/>
+            android:max="120"/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
