@@ -47,6 +47,7 @@ public class Fighter {
         skills.add(new Skill(name,"cross","body",1.25f,14));
         skills.add(new Skill(name,"hook","head",0.8f,14));
         receivedDamage = 0f;
+        recountProbabilities();
     }
 
     public Skill act(){

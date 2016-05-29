@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public final class Judge {
-    public static LinkedList<Fighter> fighters = new LinkedList<Fighter>();
+    public static LinkedList<Fighter> fighters;
     private static Random rand;
     private static final int balanceTwo = 350;
     private static final int balanceThree = 280;
@@ -15,6 +15,7 @@ public final class Judge {
         rand = new Random();
         log = new LinkedList<Skill>();
         secondsRemaining = 15;
+        fighters = new LinkedList<Fighter>();
     }
 
     public static Integer controlTwo(int sum) {
@@ -70,8 +71,8 @@ public final class Judge {
                 break;
             }
         Fighter winner = fighters.get(ind);
-        return winner.name + " won this battle.\nHe made " + (int)looser.receivedDamage +
-                " points of damage\nand received only " + (int)winner.receivedDamage +
-                "\npoints of damage";
+        return "  " + winner.name + " won!\n  He made " + (int)looser.receivedDamage +
+                "\n  points of damage\n  and received\n  only " + (int)winner.receivedDamage +
+                "\n  points of damage";
     }
 }

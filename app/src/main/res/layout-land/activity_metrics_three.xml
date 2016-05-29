@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@mipmap/background">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -201,7 +202,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/letsFight"
-        android:layout_below="@+id/relativeLayout4"
+        android:background="@android:color/holo_orange_light"
+        android:layout_alignTop="@+id/random"
         android:layout_alignRight="@+id/legsValue"
         android:layout_alignEnd="@+id/legsValue"/>
 
@@ -210,9 +212,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/random"
+        android:background="@android:color/holo_orange_light"
         android:layout_below="@+id/relativeLayout4"
         android:layout_toLeftOf="@+id/Fight"
-        android:layout_toStartOf="@+id/Fight"/>
+        android:layout_toStartOf="@+id/Fight"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp"/>
 
     <EditText
         android:layout_width="wrap_content"

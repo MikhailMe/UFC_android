@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@mipmap/background">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -122,6 +123,7 @@
         android:layout_alignStart="@+id/relativeLayout3"
         android:layout_below="@+id/relativeLayout4"
         android:layout_marginTop="70dp"
+        android:background="@android:color/holo_orange_light"
         android:text="@string/next"/>
 
 </RelativeLayout>

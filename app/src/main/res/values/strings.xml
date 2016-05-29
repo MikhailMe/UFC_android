@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kursach</string>
+    <string name="app_name">UFC</string>
     <string name="game">New Game</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
@@ -24,4 +24,5 @@
     <string name="amountThreeActivity">280</string>
     <string name="random">random</string>
     <string name="new_fight">new fight</string>
+    <string name="Return">Return to menu</string>
 </resources>

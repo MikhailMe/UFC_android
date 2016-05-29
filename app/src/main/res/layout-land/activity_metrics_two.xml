@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@mipmap/background">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -231,8 +232,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp"
+        android:background="@android:color/holo_orange_light"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
@@ -242,9 +242,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/random"
+        android:background="@android:color/holo_orange_light"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/next2"
-        android:layout_toStartOf="@+id/next2"/>
+        android:layout_toStartOf="@+id/next2"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"/>
 
     <TextView
         android:id="@+id/message"

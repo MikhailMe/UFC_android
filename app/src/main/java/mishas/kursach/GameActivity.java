@@ -2,15 +2,19 @@ package mishas.kursach;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import Logic.Fighter;
@@ -23,18 +27,17 @@ public class GameActivity extends AppCompatActivity implements OnClickListener{
     private Fighter enemy;
     private TextView output;
     private TextView result;
-    private Button newFight;
     private Button exit;
+    private ImageView left;
+    private ImageView right;
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.newFight:
-                startActivity(new Intent(this,MetricsOneActivity.class));
-                break;
             case R.id.exit:
-                finish();
-                System.exit(0);
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -63,10 +66,17 @@ public class GameActivity extends AppCompatActivity implements OnClickListener{
             super.onProgressUpdate(params);
             if (params[0].contains("won")){
                 result.setText(params[0]);
-                newFight.setEnabled(true);
-                newFight.setVisibility(View.VISIBLE);
+                exit.setEnabled(true);
+                exit.setVisibility(View.VISIBLE);
             }
-            else output.append(params[0] + '\n');
+            else{
+                left.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.standart_left));
+                right.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.standart_right));
+                if (params[0].contains("enemy"))
+                    right.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.hitright));
+                else left.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.hitleft));
+                output.append(params[0] + '\n');
+            }
         }
 
         private void task() throws InterruptedException{
@@ -81,14 +91,13 @@ public class GameActivity extends AppCompatActivity implements OnClickListener{
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initFields();
-        newFight.setOnClickListener(this);
         exit.setOnClickListener(this);
         clear();
         createMyFighter();
         createEnemy();
+        Judge.startFight();
         Judge.fighters.add(yourFighter);
         Judge.fighters.add(enemy);
-        Judge.startFight();
         MyASyncTask task = new MyASyncTask();
         task.execute();
     }
@@ -123,19 +132,23 @@ public class GameActivity extends AppCompatActivity implements OnClickListener{
 
     private void createEnemy(){
         HashMap<String, Float> defenceCoefs = new HashMap<>();
-        defenceCoefs.put("head",55f);
-        defenceCoefs.put("body",55f);
-        defenceCoefs.put("hands",55f);
-        defenceCoefs.put("legs",55f);
+        Random rand = new Random();
+        defenceCoefs.put("head",(float)rand.nextInt(70)+30);
+        defenceCoefs.put("body",(float)rand.nextInt(70)+30);
+        defenceCoefs.put("hands",(float)rand.nextInt(70)+30);
+        defenceCoefs.put("legs",(float)rand.nextInt(70)+30);
         enemy = new Fighter("enemy",new Health(100f,100f,100f,100f),
-                185f,85f,65f,65f,65f,65f,65f,defenceCoefs);
+                (float)rand.nextInt(70)+30,(float)rand.nextInt(70)+30,(float)rand.nextInt(70)+30,
+                (float)rand.nextInt(70)+30,(float)rand.nextInt(70)+30,(float)rand.nextInt(70)+30,
+                (float)rand.nextInt(70)+30,defenceCoefs);
     }
 
     private void initFields(){
         output = (TextView) findViewById(R.id.output);
         result = (TextView) findViewById(R.id.result);
-        newFight = (Button) findViewById(R.id.newFight);
         exit = (Button) findViewById(R.id.exit);
+        left = (ImageView) findViewById(R.id.f1);
+        right = (ImageView) findViewById(R.id.f2);
     }
 
     private void clear(){
@@ -143,7 +156,7 @@ public class GameActivity extends AppCompatActivity implements OnClickListener{
         result.setText("");
         yourFighter = null;
         enemy = null;
-        newFight.setVisibility(View.INVISIBLE);
-        newFight.setEnabled(false);
+        exit.setVisibility(View.INVISIBLE);
+        exit.setEnabled(false);
     }
 }
