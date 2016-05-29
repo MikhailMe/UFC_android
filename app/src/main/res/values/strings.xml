@@ -3,7 +3,9 @@
     <string name="game">New Game</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
-    <string name="aboutMessage">This app is written by Michael.</string>
+    <string name="aboutMessage">This app is written by Michael.
+    This app is a game UFC.
+    '\n'Version 1.0</string>
     <string name="name">Call fighter</string>
     <string name="height">height</string>
     <string name="weight">weight</string>
